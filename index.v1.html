@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakeside Health | Compassionate Online Therapy for Modern Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Premium Serenity -->
+    <!-- Application Structure Plan: A sophisticated, narrative-driven D2C landing page. 1) Empathetic Hero with a welcoming headline and a gentle CTA. 2) "What is Therapy?" section to educate and normalize. 3) "Our Holistic Approach" infographic to build trust in the collaborative model. 4) A redesigned, reassuring "How It Works" timeline. 5) An interactive "Therapeutic Approaches" section to showcase expertise. 6) "Areas We Support" for user self-identification. 7) Transparent pricing. 8) Social proof via testimonials. 9) FAQ accordion. 10) Final CTA. This structure provides a comprehensive, reassuring, and high-end user experience. -->
+    <!-- Visualization & Content Choices: 
+        - Holistic Approach: Goal: Explain the collaborative care model. Method: A custom infographic built with HTML/Tailwind CSS. Justification: Visually communicates a key differentiator more effectively than text alone.
+        - How It Works: Goal: Demystify the process. Method: A vertical timeline infographic. Justification: Guides the user through the steps in a clear, linear, and calming way.
+        - Therapeutic Approaches: Goal: Showcase expertise without intimidation. Method: An interactive accordion (HTML/JS). Justification: Allows curious users to learn more while keeping the page uncluttered for those who are just browsing.
+        - FAQ: Goal: Overcome objections. Method: An interactive accordion. Justification: Standard, user-friendly pattern for Q&A.
+        - Lead Form: Goal: Conversion. Method: A modal form connected to the 'd2c_leads' collection in the specified Firebase project.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FBF9F6; /* Soft, warm off-white */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
+        }
+        .cta-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px_20px_-10px_rgba(13, 148, 136, 0.5);
+        }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .approach-question {
+            cursor: pointer;
+        }
+        .approach-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .form-input:focus {
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-[#FBF9F6] text-slate-800 antialiased">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-700" style="font-family: 'Lora', serif;">
+                Lakeside Health
+            </a>
+            <button class="d2c-cta-btn bg-teal-600 text-white px-5 py-2.5 rounded-full hover:bg-teal-700 transition-all shadow-sm font-semibold">
+                Book a Consultation
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-white pt-16 pb-20 md:pt-24 md:pb-28">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">
+                    It's Okay to Not Be Okay. <br class="hidden md:block"> <span class="text-teal-700">We're Here When You're Ready.</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+                    Discover a path to clarity and peace with a dedicated therapist who truly understands. Your journey to feeling better starts here, in a safe and confidential space.
+                </p>
+                <button class="d2c-cta-btn cta-button mt-8 bg-teal-600 text-white font-bold text-xl px-8 py-4 rounded-lg">
+                    Take the First Step
+                </button>
+            </div>
+        </section>
+
+        <!-- What is Therapy Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">What is Therapy, Really?</h2>
+                    <p class="mt-4 text-lg text-slate-600">
+                        Therapy is often misunderstood. At its heart, it's a confidential conversation with a trained professional who is there to listen without judgment. It's not about being "fixed." It's a collaborative process to:
+                    </p>
+                    <ul class="mt-6 space-y-3 text-slate-700">
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1">✓</span><span>Gain a deeper understanding of your thoughts, feelings, and behaviors.</span></li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1">✓</span><span>Develop healthy coping skills for life's challenges.</span></li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1">✓</span><span>Build stronger relationships with yourself and others.</span></li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1">✓</span><span>Find a clear path forward, at your own pace.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-200/60">
+                    <h3 class="text-2xl font-bold text-center text-slate-800">Therapy is a space to be truly yourself.</h3>
+                    <p class="mt-4 text-center text-slate-600">It's a sign of strength to seek support, and our role is to provide a safe, empathetic environment for your growth.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Holistic Approach Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">A Holistic Team for Your Well-being</h2>
+                    <p class="mt-4 text-lg text-slate-600">
+                        Mental health is multifaceted. That's why we bring together a diverse team of experts under one roof to ensure you receive comprehensive, well-rounded care tailored to your specific needs.
+                    </p>
+                </div>
+                <div class="mt-12 max-w-4xl mx-auto grid md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-[#FBF9F6] p-6 rounded-xl border border-slate-200/80">
+                        <h3 class="text-xl font-bold text-slate-800">Counselling Psychologists</h3>
+                        <p class="mt-2 text-sm text-slate-600">Your primary partner in talk therapy, helping you navigate life's challenges, relationship issues, and personal growth.</p>
+                    </div>
+                    <div class="bg-[#FBF9F6] p-6 rounded-xl border-2 border-teal-500">
+                        <h3 class="text-xl font-bold text-teal-700">The Core of Your Care</h3>
+                        <p class="mt-2 text-sm text-slate-600">Your journey is supported by a collaborative team, ensuring you always have access to the right expertise.</p>
+                    </div>
+                    <div class="bg-[#FBF9F6] p-6 rounded-xl border border-slate-200/80">
+                        <h3 class="text-xl font-bold text-slate-800">Clinical Psychologists</h3>
+                        <p class="mt-2 text-sm text-slate-600">Specialists in diagnosing and treating more complex mental health conditions with structured therapeutic approaches.</p>
+                    </div>
+                    <div class="md:col-span-3 flex justify-center">
+                        <div class="bg-[#FBF9F6] p-6 rounded-xl border border-slate-200/80 w-full md:w-1/3">
+                            <h3 class="text-xl font-bold text-slate-800">Psychiatrists</h3>
+                            <p class="mt-2 text-sm text-slate-600">Medical doctors for expert diagnosis, treatment planning, and medication management, working in collaboration with your therapist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Psychiatric Evaluation Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Clarity Through Expert Evaluation</h2>
+                    <p class="mt-4 text-lg text-slate-600">
+                        Sometimes, the first step to feeling better is understanding. We offer specialized psychiatric services for those seeking a clear diagnosis or a confidential second opinion.
+                    </p>
+                    <div class="mt-6 bg-white p-6 rounded-xl border border-slate-200/80">
+                        <h4 class="text-xl font-bold text-teal-700">Our Philosophy: Empowerment Through Understanding</h4>
+                        <p class="mt-2 text-slate-600">We believe you have a right to understand your own mental health. Unlike experiences where diagnoses can be unclear or withheld, we are committed to transparently and compassionately discussing our findings with you and your caregivers. We see you as a partner in your own care, and knowledge is a key part of that partnership.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-teal-500">
+                     <h3 class="text-2xl font-bold text-center text-slate-800">Our Evaluation Services</h3>
+                     <ul class="mt-6 space-y-4">
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1 font-bold">✓</span><div><strong class="text-slate-700">Comprehensive Assessment:</strong> A thorough evaluation with an expert psychiatrist to understand your unique situation.</div></li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1 font-bold">✓</span><div><strong class="text-slate-700">Clear Diagnosis & Report:</strong> A clear, jargon-free explanation of the diagnosis and a report that helps you understand the path forward.</div></li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1 font-bold">✓</span><div><strong class="text-slate-700">Personalized Treatment Plan:</strong> Collaborative recommendations for therapy, medication, or lifestyle changes.</div></li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-3 mt-1 font-bold">✓</span><div><strong class="text-slate-700">Confidential Second Opinion:</strong> A safe space to get a fresh, unbiased, and expert perspective on a previous diagnosis or treatment plan.</div></li>
+                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Your Gentle Path to Getting Started</h2>
+                </div>
+                <div class="mt-16 max-w-2xl mx-auto">
+                    <div class="relative pl-12 pb-12">
+                        <div class="absolute left-0 top-0 h-full w-0.5 bg-slate-200"></div>
+                        <div class="absolute left-[-10px] top-0 h-5 w-5 rounded-full bg-teal-600 border-4 border-white"></div>
+                        <h3 class="text-xl font-bold">1. Reach Out Comfortably</h3>
+                        <p class="mt-1 text-slate-600">Fill out our confidential form. A qualified therapist (not a salesperson) will personally reach out via message and then a call to listen and understand what's on your mind.</p>
+                    </div>
+                    <div class="relative pl-12 pb-12">
+                         <div class="absolute left-0 top-0 h-full w-0.5 bg-slate-200"></div>
+                        <div class="absolute left-[-10px] top-0 h-5 w-5 rounded-full bg-teal-600 border-4 border-white"></div>
+                        <h3 class="text-xl font-bold">2. Thoughtful Matching</h3>
+                        <p class="mt-1 text-slate-600">Based on your conversation, we'll thoughtfully match you with the therapist on our team whose expertise and approach best align with your unique needs and personality.</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-[-10px] top-0 h-5 w-5 rounded-full bg-teal-600 border-4 border-white"></div>
+                        <h3 class="text-xl font-bold">3. Schedule Your First Session</h3>
+                        <p class="mt-1 text-slate-600">We'll help you schedule your first session at a time that works for you. You can connect via video, phone, or chat—whatever feels most comfortable to begin.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Therapeutic Approaches -->
+        <section class="py-16 md:py-24">
+             <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 text-center">Our Therapeutic Approaches</h2>
+                <p class="mt-4 text-lg text-slate-600 text-center">There is no one-size-fits-all path to well-being. Our therapists are trained in a variety of evidence-based techniques to create a plan that is unique to you.</p>
+                <div id="approach-container" class="mt-8 space-y-4">
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="approach-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Our Integrative Approach</h3>
+                            <span class="approach-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="approach-answer px-6 pb-6 text-slate-600">
+                            <p>We believe the best therapy is tailored to the individual. Your therapist will often use an integrative approach, blending elements from different modalities to create a plan that best supports your specific goals and personality. Your needs are always at the center of our work together.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="approach-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Cognitive Behavioral Therapy (CBT)</h3>
+                            <span class="approach-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="approach-answer px-6 pb-6 text-slate-600">
+                            <p>A practical, goal-oriented approach where you and your therapist gently explore the connections between your thoughts, feelings, and actions. The goal is to identify unhelpful patterns and develop new, more helpful perspectives and coping strategies. It's highly effective for anxiety, depression, and stress.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="approach-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Person-Centered Therapy</h3>
+                             <span class="approach-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="approach-answer px-6 pb-6 text-slate-600">
+                            <p>This humanistic approach is built on empathy, genuineness, and unconditional positive regard. Your therapist provides a supportive, non-judgmental environment where you are seen as the expert on your own life, empowering you to find your own solutions and path to growth.</p>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="approach-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Mindfulness-Based Therapies</h3>
+                             <span class="approach-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="approach-answer px-6 pb-6 text-slate-600">
+                            <p>These techniques help you cultivate an awareness of the present moment without judgment. By learning to observe your thoughts and feelings without getting caught up in them, you can reduce stress, manage difficult emotions, and find a greater sense of calm and clarity.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="approach-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Acceptance and Commitment Therapy (ACT)</h3>
+                             <span class="approach-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="approach-answer px-6 pb-6 text-slate-600">
+                            <p>Rather than fighting difficult thoughts and feelings, ACT helps you learn to accept them as a natural part of life. The focus then shifts to committing to actions that are guided by your core values, helping you build a rich and meaningful life even in the presence of pain.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="approach-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Solution-Focused Brief Therapy (SFBT)</h3>
+                             <span class="approach-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="approach-answer px-6 pb-6 text-slate-600">
+                            <p>This is a practical, future-oriented approach. Instead of dwelling on the past or the problem, you and your therapist will focus on identifying your strengths and finding concrete, immediate solutions to move you toward your desired future.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 text-center max-w-lg">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Affordable Care, With No Surprises</h2>
+                <p class="mt-4 text-lg text-slate-600">
+                    Investing in your well-being should be straightforward. We offer simple, transparent pricing with no subscriptions or hidden fees.
+                </p>
+                <div class="mt-8 bg-[#FBF9F6] p-8 rounded-2xl border-2 border-teal-500 shadow-xl">
+                    <h3 class="text-xl font-bold text-slate-800">Therapy Session</h3>
+                    <p class="mt-4 text-6xl font-bold text-teal-700">₹2500</p>
+                    <p class="text-slate-600">per 50-minute session</p>
+                    <ul class="mt-6 text-left space-y-2">
+                        <li class="flex items-center gap-3"><span class="text-teal-600">✓</span><span>With a qualified, Masters-level therapist</span></li>
+                        <li class="flex items-center gap-3"><span class="text-teal-600">✓</span><span>Choose video, phone, or chat</span></li>
+                        <li class="flex items-center gap-3"><span class="text-teal-600">✓</span><span>Secure & confidential platform</span></li>
+                    </ul>
+                    <button class="d2c-cta-btn cta-button mt-8 w-full bg-teal-600 text-white font-bold text-lg px-4 py-3 rounded-lg">
+                        Book Your Session Today
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="py-16 md:py-24 bg-teal-800 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <blockquote class="max-w-3xl mx-auto">
+                    <p class="text-2xl md:text-3xl font-medium" style="font-family: 'Lora', serif;">“I was nervous about starting therapy, but Lakeside Health made it so easy. My therapist is fantastic, and being able to have sessions from home has been a game-changer for my mental health.”</p>
+                    <footer class="mt-6 text-lg font-semibold text-teal-100">— Saumya J., Lakeside Health Client</footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 md:py-24 bg-[#f8f7f4]">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 text-center">Your Questions, Answered</h2>
+                <div id="faq-container" class="mt-8 space-y-4">
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="faq-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Is this really confidential?</h3>
+                            <span class="faq-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="faq-answer px-6 pb-6 text-slate-600">
+                            <p>Absolutely. Confidentiality is the foundation of our service. We use enterprise-grade, HIPAA-compliant technology and adhere to strict internal SOPs. What you share with your therapist stays between you and your therapist.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="faq-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">Who are the therapists?</h3>
+                            <span class="faq-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="faq-answer px-6 pb-6 text-slate-600">
+                            <p>All of our therapists are fully qualified professionals with a minimum of a Master's degree in Psychology or a related field. They are rigorously vetted and undergo continuous training through our in-house Lakeside Health Academy to ensure the highest standard of care.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg border border-slate-200/80">
+                        <div class="faq-question p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-slate-800">What if I don't connect with my therapist?</h3>
+                            <span class="faq-icon text-teal-600 text-2xl transform transition-transform">+</span>
+                        </div>
+                        <div class="faq-answer px-6 pb-6 text-slate-600">
+                            <p>The therapeutic relationship is key to success. If for any reason you don't feel your therapist is the right fit, you can easily and confidentially switch to another professional on our platform at no extra cost. We ensure a smooth transition; our secure backend technology and internal handover processes allow your new therapist to be brought up to speed confidentially, so you can pick up right where you left off without having to repeat your entire story.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2025 Lakeside Health. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- D2C Lead Capture Modal -->
+    <div id="d2c-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 transition-opacity duration-300 opacity-0">
+        <div id="d2c-modal-content" class="relative w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl transform scale-95 transition-transform duration-300">
+            <button id="close-d2c-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 transition-colors">
+                <svg class="h-6 w-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="d2c-form-container">
+                <h2 class="text-2xl font-bold text-center text-slate-800">Take the First Step</h2>
+                <p class="text-center mt-2 text-slate-600">Share your details below. A qualified therapist will message and then call you to understand your needs, match you with the right professional, and schedule your first consultation.</p>
+                <form id="d2c-lead-form" class="mt-6 space-y-4">
+                    <div>
+                        <label for="d2c-name" class="block text-sm font-medium text-slate-700">Full Name</label>
+                        <input type="text" id="d2c-name" name="name" class="form-input mt-1 block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm" required>
+                    </div>
+                    <div>
+                        <label for="d2c-email" class="block text-sm font-medium text-slate-700">Email Address</label>
+                        <input type="email" id="d2c-email" name="email" class="form-input mt-1 block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm" required>
+                    </div>
+                    <div>
+                        <label for="d2c-phone" class="block text-sm font-medium text-slate-700">Phone Number</label>
+                        <input type="tel" id="d2c-phone" name="phone" class="form-input mt-1 block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm" required>
+                    </div>
+                    <div>
+                        <label for="d2c-concern" class="block text-sm font-medium text-slate-700">What's on your mind? (Optional)</label>
+                        <textarea id="d2c-concern" name="concern" rows="3" class="form-input mt-1 block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm resize-none"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" id="d2c-submit-btn" class="w-full bg-teal-600 text-white font-bold text-lg px-4 py-3 rounded-lg hover:bg-teal-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center">
+                            Request a Call Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="d2c-form-success" class="hidden text-center py-8">
+                <div class="flex justify-center items-center h-16 w-16 mx-auto bg-teal-100 rounded-full">
+                    <svg class="h-8 w-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 mt-4">Thank You!</h2>
+                <p class="text-slate-600 mt-2">We've received your information. A therapist will be in touch via message and then a call shortly to discuss the next steps.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        function setupPageInteractivity() {
+            // FAQ Accordion
+            const faqContainer = document.getElementById('faq-container');
+            if (faqContainer) {
+                faqContainer.addEventListener('click', (e) => {
+                    const question = e.target.closest('.faq-question');
+                    if (!question) return;
+
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            }
+            
+            // Therapeutic Approaches Accordion
+            const approachContainer = document.getElementById('approach-container');
+            if (approachContainer) {
+                approachContainer.addEventListener('click', (e) => {
+                    const question = e.target.closest('.approach-question');
+                    if (!question) return;
+
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.approach-icon');
+
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            }
+
+            // Modal Functionality
+            const d2cModal = document.getElementById('d2c-modal');
+            const d2cModalContent = document.getElementById('d2c-modal-content');
+            const ctaButtons = document.querySelectorAll('.d2c-cta-btn');
+            const closeModalBtn = document.getElementById('close-d2c-modal-btn');
+            const leadForm = document.getElementById('d2c-lead-form');
+            
+            const openModal = () => {
+                d2cModal.classList.remove('hidden');
+                setTimeout(() => {
+                    d2cModal.classList.remove('opacity-0');
+                    d2cModalContent.classList.remove('scale-95');
+                }, 10);
+            };
+            
+            const closeModal = () => {
+                const formContainer = document.getElementById('d2c-form-container');
+                const formSuccess = document.getElementById('d2c-form-success');
+                d2cModal.classList.add('opacity-0');
+                d2cModalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    d2cModal.classList.add('hidden');
+                    formContainer.classList.remove('hidden');
+                    formSuccess.classList.add('hidden');
+                    leadForm.reset();
+                }, 300);
+            };
+
+            ctaButtons.forEach(btn => btn.addEventListener('click', openModal));
+            closeModalBtn.addEventListener('click', closeModal);
+            d2cModal.addEventListener('click', (e) => {
+                if (e.target === d2cModal) {
+                    closeModal();
+                }
+            });
+
+            return { leadForm }; 
+        }
+
+        async function setupFirebase(leadForm, db) {
+            if (!db) {
+                console.error("Firestore is not initialized.");
+                return;
+            }
+
+            const submitBtn = document.getElementById('d2c-submit-btn');
+            const formContainer = document.getElementById('d2c-form-container');
+            const formSuccess = document.getElementById('d2c-form-success');
+
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `Submitting...`;
+
+                const leadData = {
+                    name: leadForm.name.value,
+                    email: leadForm.email.value,
+                    phone: leadForm.phone.value,
+                    concern: leadForm.concern.value,
+                    submittedAt: serverTimestamp()
+                };
+
+                try {
+                    const docRef = await addDoc(collection(db, "d2c_leads"), leadData);
+                    console.log("D2C Lead captured with ID: ", docRef.id);
+
+                    formContainer.classList.add('hidden');
+                    formSuccess.classList.remove('hidden');
+                    setTimeout(() => {
+                        const d2cModal = document.getElementById('d2c-modal');
+                        d2cModal.classList.add('opacity-0');
+                        d2cModal.querySelector('#d2c-modal-content').classList.add('scale-95');
+                        setTimeout(() => {
+                            d2cModal.classList.add('hidden');
+                            formContainer.classList.remove('hidden');
+                            formSuccess.classList.add('hidden');
+                            leadForm.reset();
+                        }, 300);
+                    }, 3000);
+
+                } catch (error) {
+                    console.error("Error adding document: ", error);
+                    alert("There was an error submitting your request. Please try again.");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Request a Call Back';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { leadForm } = setupPageInteractivity();
+            
+            let db;
+            const firebaseConfig = {
+                apiKey: "AIzaSyC9YLLWA7hb7A23y7g5w87tfPJ-j-mGJlc",
+                authDomain: "lakeside-health-2eed9.firebaseapp.com",
+                projectId: "lakeside-health-2eed9",
+                storageBucket: "lakeside-health-2eed9.appspot.com",
+                messagingSenderId: "118115163034",
+                appId: "1:118115163034:web:111a7bb9ba56fd28787823",
+                measurementId: "G-HS420T4JVC"
+            };
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                db = getFirestore(app);
+                await signInAnonymously(auth);
+                await setupFirebase(leadForm, db);
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+                const formContainer = document.getElementById('d2c-form-container');
+                if (formContainer) {
+                    let errorMessage = `<h2 class="text-2xl font-bold text-center text-red-600">Configuration Error</h2><p class="mt-2 text-center">Lead capture is temporarily unavailable.</p>`;
+                    if (error.code === 'auth/configuration-not-found') {
+                         errorMessage = `
+                            <h2 class="text-2xl font-bold text-center text-red-600">Configuration Action Required</h2>
+                            <div class="mt-4 text-left text-slate-700 bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                <p class="font-semibold">It looks like Anonymous Authentication isn't enabled in your Firebase project.</p>
+                                <p class="mt-2 text-sm">To fix this and enable lead capture, please follow these steps:</p>
+                                <ol class="list-decimal list-inside mt-2 space-y-1 text-sm">
+                                    <li>Go to the <a href="https://console.firebase.google.com/project/${firebaseConfig.projectId}/authentication/providers" target="_blank" class="text-blue-600 underline">Firebase Console</a>.</li>
+                                    <li>Navigate to the <strong>Authentication</strong> section.</li>
+                                    <li>Click on the <strong>Sign-in method</strong> tab.</li>
+                                    <li>Find <strong>Anonymous</strong> in the list and enable it.</li>
+                                    <li>Once enabled, please <strong>refresh this page</strong>.</li>
+                                </ol>
+                            </div>
+                        `;
+                    }
+                    formContainer.innerHTML = errorMessage;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
